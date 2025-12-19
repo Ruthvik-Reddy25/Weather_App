@@ -13,10 +13,15 @@ function getWeather() {
     fetch(url)
         .then(response => response.json())
         .then(data => {
+            console.log(data);
             if (!data.main) {
                 alert("City not found");
                 return;
             }
+            document.getElementById("weatherInfo").style.display = "grid";
+            const iconCode = data.weather[0].icon;
+            document.getElementById("weatherIcon").src =
+            "https://openweathermap.org/img/wn/" + iconCode + "@2x.png";
 
             document.getElementById("city").innerText = `City: ${data.name}`;
             document.getElementById("temp").innerText = `Temperature: ${data.main.temp}°C`;
